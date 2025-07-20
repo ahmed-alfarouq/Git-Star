@@ -9,6 +9,7 @@ import Loader from "./components/Loader";
 import PaginationBar from "./components/PaginationBar";
 
 import fetchRepos from "./redux/thunks/reposThunk";
+import { loadState } from "./utils/localStorage";
 
 function App() {
   const repos = useSelector((state) => state.repos.repos);
@@ -18,7 +19,9 @@ function App() {
   const date = moment().subtract(30, "days").format("YYYY-MM-DD");
 
   useEffect(() => {
-    dispatch(fetchRepos(1));
+    const preloadedState = loadState();
+    console.log(preloadedState?.pageNum);
+    dispatch(fetchRepos(preloadedState?.pageNum || 1));
   }, []);
 
   return (

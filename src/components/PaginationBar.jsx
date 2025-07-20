@@ -11,8 +11,7 @@ function PaginationBar() {
   const handelPagination = (e) => {
     dispatch(fetchRepos(e.target.value));
   };
-  console.log(pageNum);
-  // 34 pages because only the first 1000 repos are available
+    // 34 pages because only the first 1000 repos are available
   const btns = Array.from({ length: 34 }, (_, i) => {
     const num = i + 1;
     return (
