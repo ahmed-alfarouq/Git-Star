@@ -15,13 +15,14 @@
   "extends": ["airbnb", "plugin:react/recommended"],
   "plugins": ["react"],
   "rules": {
+    "comma-dangle": ["error", "only-multiline"],
+    "linebreak-style": 0,
+    "quotes": ["warn", "double"],
+    "no-trailing-spaces": ["error", { "skipBlankLines": true }],
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
     "react/react-in-jsx-scope": "off",
     "import/no-unresolved": "off",
     "no-shadow": "off"
   },
-  "ignorePatterns": [
-    "dist/",
-    "build/"
-  ]
+  "ignorePatterns": ["dist/", "build/"]
 }

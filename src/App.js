@@ -1,58 +1,55 @@
-import moment from 'moment';
-import { useSelector } from 'react-redux';
-import Repo from './components/Repo';
-import PaginationBar from './components/PaginationBar';
-import './css/app.css';
+import "./css/app.css";
+import { useEffect } from "react";
 
-const App = () => {
-  const repos = useSelector((state) => state.reposReducer.repos);
-  const loading = useSelector((state) => state.reposReducer.loading);
-  const date = moment().subtract(30, 'days').format('Y-M-D');
+import moment from "moment";
+import { useDispatch, useSelector } from "react-redux";
+
+import Repo from "./components/Repo";
+import Loader from "./components/Loader";
+import PaginationBar from "./components/PaginationBar";
+
+import fetchRepos from "./redux/thunks/reposThunk";
+
+function App() {
+  const repos = useSelector((state) => state.repos.repos);
+  const loading = useSelector((state) => state.repos.loading);
+  const dispatch = useDispatch();
+
+  const date = moment().subtract(30, "days").format("YYYY-MM-DD");
+
+  useEffect(() => {
+    dispatch(fetchRepos(1));
+  }, []);
+
   return (
-    <>
-      {
-        loading === false
-          ? (
-            <>
-              <ul className="app">
-                {
-                  repos.length
-                    ? (
-                      repos.map((repo) => (
-                        <Repo
-                          key={repo.id}
-                          ownerName={repo.ownerName}
-                          avatar={repo.avatar}
-                          repoName={repo.repoName}
-                          description={repo.description}
-                          stars={repo.stars}
-                          issues={repo.issues}
-                        />
-                      ))
-                    )
-                    : (
-                      <h1 className="no-repos">
-                        There are no repos provided in
-                        {' '}
-                        {date}
-                      </h1>
-                    )
-                }
-              </ul>
-            </>
-          )
-          : (
-            <div className="loading">
-              <h2>
-                loading...
-              </h2>
-              <span />
-            </div>
-          )
-      }
+    <main>
+      {loading ? (
+        <Loader />
+      ) : (
+        <ul className="repos-list">
+          {repos.length ? (
+            repos.map((repo) => (
+              <Repo
+                key={repo.id}
+                ownerName={repo.owner.login}
+                avatar={repo.owner.avatar_url}
+                repoName={repo.name}
+                description={repo.description}
+                stars={repo.stargazers_count}
+                issues={repo.has_issues ? repo.open_issues_count : 0}
+              />
+            ))
+          ) : (
+            <li className="no-repos">
+              There are no repos provided in
+              {date}
+            </li>
+          )}
+        </ul>
+      )}
       <PaginationBar />
-    </>
+    </main>
   );
-};
+}
 
 export default App;
