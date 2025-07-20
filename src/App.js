@@ -20,7 +20,6 @@ function App() {
 
   useEffect(() => {
     const preloadedState = loadState();
-    console.log(preloadedState?.pageNum);
     dispatch(fetchRepos(preloadedState?.pageNum || 1));
   }, []);
 
