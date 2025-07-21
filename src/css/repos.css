@@ -5,6 +5,7 @@
   justify-content: space-between;
   gap: 10px;
   list-style: none;
+  padding-bottom: 20px;
 }
 
 .repos-list::after {
@@ -12,9 +13,12 @@
   display: block;
   margin: 20px auto;
   position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
   border: 2px solid rgb(239, 239, 239);
   border-radius: 2px;
-  width: 50%;
+  width: 60%;
 }
 
 .repo {
