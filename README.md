@@ -15,14 +15,14 @@
 
 ## Live Demo
 
-[Live Demo](https://gitstar.pages.dev/)
+[Live Demo](https://gitstar-olive.vercel.app/)
 #### Knowledge of these technologies
   * ReactJS
   * Redux
 
 ### Setup
   * Open your command
-  * Type "git clone https://github.com/ahmed-al-farouq/Git-Star.git"
+  * Type "git clone https://github.com/ahmed-alfarouq/Git-Star.git"
   * npm i
   * npm run start
 
@@ -35,9 +35,8 @@
 
 ## Author
 :bearded_person: **Ahmed Al-Farouq**
-  - Github: [@Ahmed-Alfarouq](https://github.com/ahmed-al-farouq)
-  - LinkedIn: [LinkedIn](https://www.linkedin.com/in/ahmed-al-farouq/)
-  - Twitter: [@twitter](https://twitter.com/ahmed_al_farouq)
+  - Github: [@Ahmed-Alfarouq](https://github.com/ahmed-alfarouq)
+  - LinkedIn: [LinkedIn](https://www.linkedin.com/in/ahmed-alfarouq/)
 
 ## 🤝 Contributing
 

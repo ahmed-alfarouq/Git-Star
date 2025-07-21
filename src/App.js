@@ -28,7 +28,7 @@ function App() {
       {loading ? (
         <Loader />
       ) : (
-        <ul className="repos-list">
+        <ul className={`${repos.length ? "repos-list" : "no-repos"}`}>
           {repos.length ? (
             repos.map((repo) => (
               <Repo
@@ -42,14 +42,14 @@ function App() {
               />
             ))
           ) : (
-            <li className="no-repos">
+            <li>
               There are no repos provided in
-              {date}
+              {` ${date}`}
             </li>
           )}
         </ul>
       )}
-      <Pagination />
+      {repos.length ? <Pagination /> : null}
     </main>
   );
 }

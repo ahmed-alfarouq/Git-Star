@@ -67,6 +67,10 @@
   .repos-list {
     grid-template-columns: minmax(200px, 1fr);
   }
+
+  .repo img {
+    width: 90px;
+  }
 }
 
 @media screen and (max-width: 576px) {
