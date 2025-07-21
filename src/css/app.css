@@ -8,8 +8,8 @@
   margin: 0;
 }
 
-/* Loading  */
-.loading {
+/* loader  */
+.loader {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,21 +24,21 @@
   transform: translateZ(1px);
 }
 
-.loading h2 {
+.loader h2 {
   font-size: 30px;
 }
 
-.loading > span {
+.loader > span {
   display: inline-block;
   width: 64px;
   height: 64px;
   margin: 8px;
   border-radius: 50%;
   background: rgb(32, 32, 51);
-  animation: loading 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  animation: Loader 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 
-@keyframes loading {
+@keyframes Loader {
   0%,
   100% {
     animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);

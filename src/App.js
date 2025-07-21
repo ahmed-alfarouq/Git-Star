@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Repo from "./components/Repo";
 import Loader from "./components/Loader";
-import PaginationBar from "./components/PaginationBar";
+import Pagination from "./components/Pagination";
 
 import fetchRepos from "./redux/thunks/reposThunk";
 import { loadState } from "./utils/localStorage";
@@ -49,7 +49,7 @@ function App() {
           )}
         </ul>
       )}
-      <PaginationBar />
+      <Pagination />
     </main>
   );
 }
