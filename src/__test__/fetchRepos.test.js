@@ -1,46 +1,34 @@
-import '@testing-library/jest-dom/extend-expect';
-import fetchRepos from '../__mocks__/fetchRepos';
+import { configureStore } from "@reduxjs/toolkit";
+import fetchRepos from "../redux/thunks/reposThunk";
+import resposReducer from "../redux/features/repos/reposSlice";
 
-describe('test fethcing repos', () => {
-  it('test fetching ID', async () => {
-    await fetchRepos().then((repos) => {
-      expect(repos[0].id).toBe(116682298);
+global.fetch = jest.fn(() => Promise.resolve({
+  json: () => Promise.resolve({ items: [{ id: 1, name: "aje" }] }),
+}));
+
+describe("Test fethcing repos", () => {
+  let store;
+  
+  beforeAll(async () => {
+    store = configureStore({
+      reducer: {
+        repos: resposReducer
+      }
     });
+    
+    await store.dispatch(fetchRepos());
   });
 
-  it('test fetching owner name', async () => {
-    await fetchRepos().then((repos) => {
-      expect(repos[0].owner_name).toBe('rrdssfgcs');
-    });
+  it("Test repos length", async () => {
+    const state = store.getState().repos;
+    expect(state.repos.length).toBeGreaterThan(0);
   });
 
-  it('test fetching avatar', async () => {
-    await fetchRepos().then((repos) => {
-      expect(repos[0].avatar).toBe('https://avatars.githubusercontent.com/u/29747636?v=4');
-    });
-  });
+  it("Test repo name", async () => {
+    const state = store.getState().repos;
+    const item = state.repos[0];
 
-  it('test fetching repo name', async () => {
-    await fetchRepos().then((repos) => {
-      expect(repos[0].repo_name).toBe('wenda-helper');
-    });
-  });
-
-  it('test fetching description', async () => {
-    await fetchRepos().then((repos) => {
-      expect(repos[0].description).toBe(null);
-    });
-  });
-
-  it('test fetching stars', async () => {
-    await fetchRepos().then((repos) => {
-      expect(repos[0].stars).toBe(794);
-    });
-  });
-
-  it('test fetching issues', async () => {
-    await fetchRepos().then((repos) => {
-      expect(repos[0].issues).toBe(0);
-    });
+    expect(item.name).toBe("aje");
+    expect(item.id).toBe(1);
   });
 });
